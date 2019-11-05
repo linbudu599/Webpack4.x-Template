@@ -1,0 +1,12 @@
+p {
+  color: white;
+  font-size: 128px;
+}
+div {
+  display: flex;
+  width: 800px;
+  height: 800px;
+  background-image: url(../assets//imgs//yinyin.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}

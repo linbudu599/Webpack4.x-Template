@@ -47,6 +47,16 @@ module.exports = {
           "postcss-loader",
           "less-loader"
         ]
+      },
+      {
+        test: /\.(eot|ttf|svg|woff)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 1024 * 10
+          }
+          // .woff，woff2一定要url-loader处理成DataURL，否则会报错跨域问题
+        }
       }
     ]
   },

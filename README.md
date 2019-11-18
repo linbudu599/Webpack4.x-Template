@@ -11,21 +11,22 @@ What do we lost at the same time we get time-saving?
 1. 基础 Eslint Babel(7.0) PostCss Less Vue
 2. 拆分配置文件 split config file
 3. Loader：  
-   1.MiniCssExtractPlugin: 分离CSS文件  
-   2.CleanWebpackPlugin: 清除旧的dist目录  
-   3.HtmlWebpackPlugin: 生成HTML模板  
-   4.CopyWebpackPlugin: 拷贝静态资源  
-   5.merge:合并配置  
-   6.OptimizeCssAssetsPlugin:压缩CSS  
-   7.PurifyCSS:清理重复、无用CSS  
-   8.ParallelUglifyPlugin:压缩JS  
-   9.BundleAnalyzerPlugin:分析打包大小  
-   10.Visualizer:也是分析打包大小，但我感觉这个更直观
+  1.MiniCssExtractPlugin: 分离CSS文件  
+  2.CleanWebpackPlugin: 清除旧的dist目录  
+  3.HtmlWebpackPlugin: 生成HTML模板  
+  4.CopyWebpackPlugin: 拷贝静态资源  
+  5.merge:合并配置  
+  6.OptimizeCssAssetsPlugin:压缩CSS  
+  7.PurifyCSS:清理重复、无用CSS  
+  8.ParallelUglifyPlugin:压缩JS  
+  9.BundleAnalyzerPlugin:分析打包大小  
+  10.Visualizer:也是分析打包大小，但我感觉这个更直观
+  11.字体文件配置（但有个诡异的地方，明明字体文件加载到了，但就是不会显示...，应该也不是路径问题了，因为我直接把字体拷到dist文件夹里改了main.css，也不起作用）
 
 ## 接下来实现/解决的功能 Functions remain unsolved
 
 1. 环境变量
-2. 字体文件配置
+2. ~~字体文件配置~~
 3. 多入口、多出口配置
 4. 重新实现webpack-dev-server
 5. 代码分割

@@ -1,12 +1,19 @@
+@font-face {
+  font-family: "linbudu";
+  src: url("../assets/font/方正颜宋简体.ttf") format("truetype"),
+    url("../assets/font/方正颜宋简体.woff") format("woff");
+}
+
 p {
   color: white;
   font-size: 128px;
+  font-family: "linbudu";
 }
 div {
   display: flex;
   width: 800px;
   height: 800px;
-  background-image: url(../assets//imgs//yinyin.jpg);
+  background-image: url(../assets/imgs/yinyin.jpg);
   background-repeat: no-repeat;
   background-size: contain;
 }

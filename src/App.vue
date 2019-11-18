@@ -1,6 +1,8 @@
 <template>
   <div>
     <p>This Sentence is from {{ name }} file~!</p>
+    <p>让我来看看字体对不对</p>
+    <p>对了~</p>
   </div>
 </template>
 <script>

@@ -21,7 +21,9 @@ What do we lost at the same time we get time-saving?
   8.ParallelUglifyPlugin:压缩JS  
   9.BundleAnalyzerPlugin:分析打包大小  
   10.Visualizer:也是分析打包大小，但我感觉这个更直观
-  11.字体文件配置（但有个诡异的地方，明明字体文件加载到了，但就是不会显示...，应该也不是路径问题了，因为我直接把字体拷到dist文件夹里改了main.css，也不起作用）
+  11.字体文件配置  
+  ~~11.puzzle 但有个诡异的地方，明明字体文件加载到了，但就是不会显示...，应该也不是路径问题了，因为我直接把字体拷到dist文件夹里改了main.css，也不起作用~~  
+  ⬆已解决，是字体文件的问题，因为图省事只配了每个字体的ttf格式，这个字体（汉咪简体）估计是刚好不行，换了个字体立马成功了，这么个小问题浪费了我一个多小时...
 
 ## 接下来实现/解决的功能 Functions remain unsolved
 

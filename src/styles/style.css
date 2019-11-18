@@ -1,13 +1,13 @@
 @font-face {
   font-family: "linbudu";
-  src: url("../assets/font/方正颜宋简体.ttf") format("truetype"),
-    url("../assets/font/方正颜宋简体.woff") format("woff");
+  src: url("../assets/font/汉仪咪咪体简.ttf") format("truetype");
+  /* url("../assets/font/方正颜宋简体.woff") format("woff"); */
 }
 
 p {
   color: white;
   font-size: 128px;
-  font-family: "linbudu";
+  /* font-family: "linbudu"; */
 }
 div {
   display: flex;

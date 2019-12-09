@@ -9,7 +9,6 @@
     "not ie <= 8"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack   --progress --config ./build/webpack.dev.js",
     "serve": "webpack-dev-server --hot --inline --config ./build/webpack.dev.js  --progress  --mode development",
     "lint": "eslint --ext .js --ext .vue src/",

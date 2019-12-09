@@ -14,6 +14,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts?$/,
+        loader: "ts-loader",
+        exclude: /(node_modules)/,
+        include: [path.resolve(__dirname, "../src")]
+      },
+      {
         test: /\.js$/,
         loader: "eslint-loader",
         enforce: "pre", //编译前检查

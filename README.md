@@ -29,14 +29,15 @@ What do we lost at the same time we get time-saving?
 
 1. 环境变量
 2. ~~字体文件配置~~
-3. 多入口、多出口配置
-4. 重新实现webpack-dev-server
-5. 代码分割
-6. 真·Tree-Shaking
-7. Source-Map
-8. 懒加载
-9. 浏览器缓存
-10. 垫片
-11. 单页面实现
-12. 多页面实现
-13. 打包大小优化：dll
+3. ~~ts支持~~
+4. 多入口、多出口配置
+5. 重新实现webpack-dev-server
+6. 代码分割
+7. 真·Tree-Shaking
+8. Source-Map
+9. 懒加载
+10. 浏览器缓存
+11. 垫片
+12. 单页面实现
+13. 多页面实现
+14. 打包大小优化：dll

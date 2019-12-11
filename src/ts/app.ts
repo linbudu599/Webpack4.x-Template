@@ -7,6 +7,4 @@ function foo(sample: Foo): Foo {
   return sample;
 }
 
-foo({ foo: "来自typescript的友好问候" });
-
 export { foo };

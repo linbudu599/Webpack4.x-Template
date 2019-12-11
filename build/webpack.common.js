@@ -1,9 +1,11 @@
 const path = require("path");
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+
 module.exports = {
   entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
 

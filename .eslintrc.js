@@ -4,15 +4,15 @@ module.exports = {
     ecmaVersion: 7,
     sourceType: "module",
     parser: "babel-eslint"
-    // parser: "vue-eslint-parser"
   },
-  // parser: "babel-eslint",
   parser: "vue-eslint-parser",
+  // 环境变量
   env: {
     //指定代码运行的宿主环境
     browser: true
   },
   plugins: ["html", "vue"],
+  // extends: ['alloy', 'alloy/typescript'],
   // extends: "standard",
   // extends: ["plugin:vue/essential"],
   rules: {

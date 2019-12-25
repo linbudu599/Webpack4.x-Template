@@ -11,13 +11,17 @@ What do we lost at the same time we get time-saving?
 ### 基础
 
 - Eslint
-- Babel(7.0)
+  > 使用 [eslint-config-alloy](https://www.npmjs.com/package/eslint-config-alloy)
+  > 格式化工具： [eslint-formatter-pretty](https://www.npmjs.com/package/eslint-formatter-pretty)
+- Babel
+  > 关于升级到 Babel7.0，可以看我的这篇小贴士: [Tips-Babel7](https://github.com/linbudu599/Penumbra/blob/master/Tips/babel7-config.md)
 - PostCss
 - Less
+- StyleLint
 - Vue
+- React
+  > 参见分支
 - Typescript
-
-### 拆分配置文件 split config file
 
 ### Loader/Plugin/Feature
 
@@ -25,7 +29,7 @@ What do we lost at the same time we get time-saving?
 - [CleanWebpackPlugin](https://www.npmjs.com/package/clean-webpack-plugin): 清除旧的 dist 目录
 - [HtmlWebpackPlugin](https://www.npmjs.com/package/html-webpack-plugin): 生成 HTML 模板
 - [CopyWebpackPlugin](https://www.npmjs.com/package/copy-webpack-plugin): 拷贝静态资源
-- [merge](https://www.npmjs.com/package/webpack-merge):**合并配置**
+- [merge](https://www.npmjs.com/package/webpack-merge): 合并配置
 - [OptimizeCssAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin):压缩 CSS
 - [PurifyCSS](https://www.npmjs.com/package/purifycss-webpack):清理重复、无用 CSS
 - [ParallelUglifyPlugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin):压缩 JS

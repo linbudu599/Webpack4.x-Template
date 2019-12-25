@@ -1,10 +1,9 @@
-interface Foo {
-  foo: string;
+interface ITsFunTest {
+    base: number;
+    increment: 5 | 10 | 15;
+    result: string;
 }
-
-function foo(sample: Foo): Foo {
-  console.log(sample.foo);
-  return sample;
-}
-
-export { foo };
+const add = ({ base, increment, result }: ITsFunTest): string => {
+    return `返回值为 ${base + increment}`;
+};
+export default add;

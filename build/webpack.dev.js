@@ -7,7 +7,6 @@ const dotenv = require("dotenv").config({
 const commenConfig = require("./webpack.common");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 
-console.log(dotenv);
 const devConfig = {
   mode: "development",
   devServer: {

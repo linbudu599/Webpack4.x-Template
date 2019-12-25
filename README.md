@@ -44,6 +44,9 @@ What do we lost at the same time we get time-saving?
 ## 接下来实现/解决的功能 Functions remain unsolved
 
 - 各种各样的 lint
+  > ~~eslint~~
+  > ~~stylelint~~
+  > ~~tslint~~
 - ~~环境变量~~
 - ~~字体文件配置~~
 - ~~ts 支持~~

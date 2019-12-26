@@ -13,12 +13,10 @@ trim_trailing_whitespace = true
 indent_size = 2
 
 # 匹配js和py结尾的文件
-[*.{js,py}]
+[*.js]
 # 设置字符集
 charset = utf-8
 
-# 匹配py结尾的文件
-[*.py]
 # 缩进风格，可选"space"、"tab"
 indent_style = space
 # 缩进的空格数

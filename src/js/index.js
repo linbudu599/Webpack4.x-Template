@@ -13,7 +13,7 @@ console.log("dotenv挂载进入的变量: " + process.env.USERNAMEBUDU);
 console.log(process.env.FILENAME);
 
 function demo() {
-  console.log("First Bundle Success!");
+    console.log("First Bundle Success!");
 }
 demo();
 
@@ -22,6 +22,6 @@ testFunc();
 add({ base: 5, increment: 15, results: "test" });
 
 new Vue({
-  el: "#root",
-  render: h => h(App)
+    el: "#root",
+    render: h => h(App)
 });

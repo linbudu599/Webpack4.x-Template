@@ -1,5 +1,5 @@
 const path = require("path");
-const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -99,7 +99,7 @@ module.exports = {
                 to: "publicDocs"
             }
         ]),
-        new VueLoaderPlugin({})
+        new VueLoaderPlugin()
     ],
     /**
      * webpack中实现代码分割的两种方式：
@@ -137,6 +137,8 @@ module.exports = {
                     filename: "common.js"
                 }
             }
-        }
+        },
+        minimize: true,
+        minimizer: [new UglifyJsPlugin({})]
     }
 };

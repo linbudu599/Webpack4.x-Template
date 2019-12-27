@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development &&  webpack  --config ./build/webpack.dev.js",
-    "serve": "cross-env NODE_ENV=development && webpack-dev-server --hot --inline --config ./build/webpack.dev.js",
+    "serve": "cross-env NODE_ENV=development && webpack-dev-server --config ./build/webpack.dev.js",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
@@ -88,6 +88,7 @@
     "webpack": "^4.40.2",
     "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^3.3.9",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.8.1",
     "webpack-merge": "^4.2.2",
     "webpack-parallel-uglify-plugin": "^1.1.2",
@@ -96,6 +97,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.3"
   }

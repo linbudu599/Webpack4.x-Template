@@ -1,14 +1,16 @@
 # Webpack 4.x 模板配置
 
->🤖 这个项目目前还处于雏形之中，我奏是个弟弟
+> 🤖 这个项目目前还处于雏形之中，我奏是个弟弟
 
 ## 😃 已经实现的功能 Functions already accomplished
 
 ### 基础
 
 - Eslint
-  > 使用 [eslint-config-alloy](https://www.npmjs.com/package/eslint-config-alloy)
-  > 格式化工具： [eslint-formatter-pretty](https://www.npmjs.com/package/eslint-formatter-pretty)
+
+  > - 使用 [eslint-config-alloy](https://www.npmjs.com/package/eslint-config-alloy)
+  > - 格式化工具： [eslint-formatter-pretty](https://www.npmjs.com/package/eslint-formatter-pretty)
+
 - Babel
   > 关于升级到 Babel7.0，可以看我的这篇小贴士: [Tips-Babel7](https://github.com/linbudu599/Penumbra/blob/master/Tips/babel7-config.md)
 - PostCss
@@ -32,7 +34,11 @@
 - [BundleAnalyzerPlugin](https://www.npmjs.com/package/webpack-bundle-analyzer):分析打包大小
 - [Visualizer](https://www.npmjs.com/package/webpack-visualizer-plugin):也是分析打包大小，但我感觉这个更直观
 - 字体文件配置
-  > ~~puzzle 但有个诡异的地方，明明字体文件加载到了，但就是不会显示...，应该也不是路径问题了，因为是字体文件的问题，因为图省事只配了每个字体的 ttf 格式，这个字体（汉咪简体）估计是刚好不行，换了个字体立马成功了，这么个小问题浪费了我一个多小时... 4.
+
+  > ~~puzzle 但有个诡异的地方，明明字体文件加载到了，但就是不会显示...~~
+
+  > 是字体文件的问题，因为图省事只配了每个字体的 ttf 格式，这个字体（汉咪简体）估计是刚好不行，换了个字体立马成功了，这么个小问题浪费了我一个多小时...
+
 - [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
 - 环境变量 & DefinePlugin & [dotenv](https://www.npmjs.com/package/dotenv)
 
@@ -46,12 +52,28 @@
 - 字体文件配置 ✔
 - ts 支持 ✔
 - 多入口、多出口相关配置
-- 重新实现 webpack-dev-server
+- 重新实现 webpack-dev-server ❔
+
+  - webpack-dev-server 配置项参见 [webpack.dev.js](build/webpack.dev.js)
+  - 使用 `webpack-dev-middleware` 报错(vue-loader 错误)，待解决
+
 - 代码分割
+
   > - [为什么要进行代码分割？](./Analyze.md)
-  > - 单页面下代码分割  ✔
+  > - 单页面下代码分割 ✔
   > - 多页面下代码分割
-- 真·Tree-Shaking
+
+- 真·Tree-Shaking ✔
+
+  > Tree Shaking：只支持 `ES Module` 例如 `import` 和 `export` 的静态结构特性的引入。
+  > 当引入一个模块时，不引入所有的代码，只引入需要的代码.
+  >
+  > > 如果把代码打包比作制作蛋糕。传统的方式是把鸡蛋(带壳)全部丢进去搅拌，然后放入烤箱，最后把(没有用的)蛋壳全部挑选并剔除出去。而 `treeshaking` 则是一开始就把有用的蛋白蛋黄放入搅拌，最后直接作出蛋糕。
+
+  - webpack 默认 es6 规范编写的模块都能使用 tree-shaking
+  - ts 要使用，需要在 `tsconfig.json` 中将编译目标(target)设定为 `es6`
+  - 4.0 中需要使用 `config.optimization.minimize` 来进行设置
+
 - Source-Map
 - 懒加载
 - 浏览器缓存

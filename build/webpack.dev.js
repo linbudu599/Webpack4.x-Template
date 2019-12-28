@@ -61,7 +61,7 @@ const devConfig = {
         new FriendlyErrorsWebpackPlugin({
             compilationSuccessInfo: {
                 messages: [
-                    "You application is running here http://localhost:3000"
+                    "You application is running here http://localhost:9999"
                 ],
                 notes: ["一些注意事项"]
             },

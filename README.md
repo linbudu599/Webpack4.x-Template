@@ -65,12 +65,12 @@
 
 - 真·Tree-Shaking ✔
 
-  > Tree Shaking：只支持 `ES Module` 例如 `import` 和 `export` 的静态结构特性的引入。
+  > Tree Shaking：只支持 `ES **Module`\*\* 例如 `import` 和 `export` 的静态结构特性的引入。
   > 当引入一个模块时，不引入所有的代码，只引入需要的代码.
   >
-  > > 如果把代码打包比作制作蛋糕。传统的方式是把鸡蛋(带壳)全部丢进去搅拌，然后放入烤箱，最后把(没有用的)蛋壳全部挑选并剔除出去。而 `treeshaking` 则是一开始就把有用的蛋白蛋黄放入搅拌，最后直接作出蛋糕。
+  > > 如果把代码打包比作制作蛋糕。传统的方式是把鸡蛋(带壳)全部丢进去搅拌，然后放入烤箱，最后把(没有用的)蛋壳全部挑选并剔除出去。而 `treeshaking` 则是一开始就把有用的蛋白蛋黄放入搅拌，最后直接做出蛋糕。
 
-  - webpack 默认 es6 规范编写的模块都能使用 tree-shaking
+  - `webpack` 默认 `es6` 规范编写的模块都能使用 `tree-shaking`
   - ts 要使用，需要在 `tsconfig.json` 中将编译目标(target)设定为 `es6`
   - 4.0 中需要使用 `config.optimization.minimize` 来进行设置
 
@@ -78,7 +78,7 @@
 - 懒加载
 - 浏览器缓存
 - 垫片
-- 单页面实现
-  > 参见分支[react-pratice](https://github.com/linbudu599/Webpack4.x-Template/tree/react-pratice)，使用 `React-Router`
+- 单页面实现 ✔
+  > - 使用`Vue-Router`
 - 多页面实现
 - 打包大小优化：dll

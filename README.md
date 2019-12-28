@@ -28,11 +28,11 @@
 - [HtmlWebpackPlugin](https://www.npmjs.com/package/html-webpack-plugin): 生成 HTML 模板
 - [CopyWebpackPlugin](https://www.npmjs.com/package/copy-webpack-plugin): 拷贝静态资源
 - [merge](https://www.npmjs.com/package/webpack-merge): 合并配置
-- [OptimizeCssAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin):压缩 CSS
-- [PurifyCSS](https://www.npmjs.com/package/purifycss-webpack):清理重复、无用 CSS
-- [ParallelUglifyPlugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin):压缩 JS
-- [BundleAnalyzerPlugin](https://www.npmjs.com/package/webpack-bundle-analyzer):分析打包大小
-- [Visualizer](https://www.npmjs.com/package/webpack-visualizer-plugin):也是分析打包大小，但我感觉这个更直观
+- [OptimizeCssAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin): 压缩 CSS
+- [PurifyCSS](https://www.npmjs.com/package/purifycss-webpack): 清理重复、无用 CSS
+- [ParallelUglifyPlugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin): 压缩 JS
+- [BundleAnalyzerPlugin](https://www.npmjs.com/package/webpack-bundle-analyzer): 分析打包大小
+- [Visualizer](https://www.npmjs.com/package/webpack-visualizer-plugin): 也是分析打包大小，但我感觉这个更直观
 - 字体文件配置
 
   > ~~puzzle 但有个诡异的地方，明明字体文件加载到了，但就是不会显示...~~
@@ -41,6 +41,8 @@
 
 - [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
 - 环境变量 & DefinePlugin & [dotenv](https://www.npmjs.com/package/dotenv)
+
+- [preload-webpack-plugin](https://github.com/GoogleChromeLabs/preload-webpack-plugin): 实现预加载
 
 ## ⚒ 接下来实现/解决的功能 Functions remain unsolved
 
@@ -62,6 +64,7 @@
   > - [为什么要进行代码分割？](./Analyze.md)
   > - 单页面下代码分割 ✔
   > - 多页面下代码分割
+  > - 使用[dynamic-import-webpack](http://npm.taobao.org/package/babel-plugin-dynamic-import-webpack)进行代码分割
 
 - 真·Tree-Shaking ✔
 
@@ -75,7 +78,9 @@
   - 4.0 中需要使用 `config.optimization.minimize` 来进行设置
 
 - Source-Map
-- 懒加载
+- 懒加载 ✔
+  > 有 `import()` 和 `require.ensure()` 两种写法，待整理
+- 预加载
 - 浏览器缓存
 - 垫片
 - 单页面实现 ✔

@@ -9,6 +9,14 @@ import App from "../App.vue";
 
 import add from "../ts/app.ts";
 
+import(/* webpackChunkName: 'subPageA'*/ "./chunkA").then(function(subPageA) {
+    console.log(subPageA);
+});
+
+import(/* webpackChunkName: 'subPageB'*/ "./chunkB").then(function(subPageB) {
+    console.log(subPageB);
+});
+
 console.log(process.env.NODE_ENV);
 
 console.log(PRODUCTION, process.env.NODE_ENV);

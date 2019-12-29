@@ -9,6 +9,11 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 
 const devConfig = {
     mode: "development",
+    // eval :速度最快、效率最高，但没有生产映射
+    // inline: 内联到对应js文件
+    // cheap: 只提示错误在源文件的哪一行就行了，不用精确到哪一行哪一列
+    // module: 指不光是我们写的代码，包括第三方模块的代码，它都会进行错误提示
+    // devtools:"none",
     devServer: {
         host: "localhost",
         open: true,
@@ -23,9 +28,6 @@ const devConfig = {
             errors: true
         },
         stats: "errors-only" // 编译时shell上的输出内容
-    },
-    optimization: {
-        minimizer: []
     },
     module: {
         rules: [
@@ -79,7 +81,8 @@ const devConfig = {
         })
     ],
     optimization: {
-        //在开发环境中加，生产环境不加
+        // 在开发环境中加，生产环境不加
+        // 摇树优化
         usedExports: true
     }
 };

@@ -44,6 +44,8 @@
 
 - [preload-webpack-plugin](https://github.com/GoogleChromeLabs/preload-webpack-plugin): 实现预加载
 
+-
+
 ## ⚒ 接下来实现/解决的功能 Functions remain unsolved
 
 - 各种各样的 lint
@@ -77,7 +79,16 @@
   - ts 要使用，需要在 `tsconfig.json` 中将编译目标(target)设定为 `es6`
   - 4.0 中需要使用 `config.optimization.minimize` 来进行设置
 
-- Source-Map
+- Source-Map ✔
+
+  > 注意，如果使用了 `UglifyJsPlugin` 则需要在其中也配置 sourceMap
+
+  ```javascript
+  new UglifyJsPlugin({
+    sourceMap: true
+  });
+  ```
+
 - 懒加载 ✔
   > 有 `import()` 和 `require.ensure()` 两种写法，待整理
 - 预加载

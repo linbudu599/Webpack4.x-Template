@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -9,7 +10,7 @@ const PreloadWebpackPlugin = require("preload-webpack-plugin");
 
 module.exports = {
     entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
-
+    devtool: "source-map",
     output: {
         filename: "[name].[hash:8].js", //输出文件名，[name]表示入口文件js名
         path: path.join(__dirname, "../dist") //输出文件路径
@@ -114,14 +115,23 @@ module.exports = {
         //     // fileBlacklist: ["index.css"]
         //     fileBlacklist: [/\index.css|index.js|vendors.js/, /\.whatever/]
         // }),
-
+        // https://cloud.tencent.com/developer/section/1477577
+        // new webpack.SourceMapDevToolPlugin({
+        //     filename: "[name].js.map",
+        //     include: "/src/*.js"
+        // }),
         new CopyWebpackPlugin([
             {
                 from: "./src/assets/docs",
                 to: "publicDocs"
             }
         ]),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        // https://www.webpackjs.com/plugins/banner-plugin/
+        new webpack.BannerPlugin({
+            banner: "©️linbudu 2019",
+            entryOnly: true
+        })
     ],
     /**
      * webpack中实现代码分割的两种方式：
@@ -161,6 +171,10 @@ module.exports = {
             }
         },
         minimize: true,
-        minimizer: [new UglifyJsPlugin({})]
+        minimizer: [
+            new UglifyJsPlugin({
+                sourceMap: true
+            })
+        ]
     }
 };

@@ -11,11 +11,16 @@ import add from "../ts/app.ts";
 
 import(/* webpackChunkName: 'subPageA'*/ "./chunkA").then(function(subPageA) {
     console.log(subPageA);
+    console.log(subPageA.default);
 });
 
 import(/* webpackChunkName: 'subPageB'*/ "./chunkB").then(function(subPageB) {
     console.log(subPageB);
 });
+
+import(/* webpackPrefetch: true */ "./pre").then((pre)=>{
+    console.log(pre);
+})
 
 console.log(process.env.NODE_ENV);
 

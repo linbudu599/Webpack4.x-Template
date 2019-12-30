@@ -10,10 +10,11 @@ const PreloadWebpackPlugin = require("preload-webpack-plugin");
 
 module.exports = {
     entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
-    devtool: "source-map",
+    // devtool: "source-map",
     output: {
         filename: "[name].[hash:8].js", //输出文件名，[name]表示入口文件js名
-        path: path.join(__dirname, "../dist") //输出文件路径
+        path: path.join(__dirname, "../dist") ,//输出文件路径
+        chunkFilename: "[name].chunk.js"
     },
     module: {
         rules: [
@@ -94,32 +95,11 @@ module.exports = {
             cache: true, //默认是true的，表示内容变化的时候生成一个新的文件。
             showErrors: true //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
         }),
-        // 需要写在 HtmlWebpackPlugin 配置之后
-        // new PreloadWebpackPlugin({
-        //     // preload强制浏览器获取当前需要的资源，优先级高，
-        //     //  prefetch获取将来需要的资源， 把决定权留给浏览器， 所以一般浏览器会在闲置的时候下载，
-        //     //  preload一定会及时下载资源， prefetch最后都不一定去下载。
-        //     rel: "prefetch",
-        //     // 会根据不用的文件类型来使用as属性
-        //     // 如.css文件会被自动预加载为as=style
-        //     // .woff2 文件 -> as=font
-        //     // 其他文件会被设定为as=script
-        //     // 这里将所有文件都指定为script
-        //     as: "script",
-        //     // 更细粒度的匹配
-        //     // as(entry) {
-        //     //   if (/\.css$/.test(entry)) return 'style';
-        //     //   return 'script';
-        //     // },
-        //     include: "asyncChunks",
-        //     // fileBlacklist: ["index.css"]
-        //     fileBlacklist: [/\index.css|index.js|vendors.js/, /\.whatever/]
-        // }),
         // https://cloud.tencent.com/developer/section/1477577
-        // new webpack.SourceMapDevToolPlugin({
-        //     filename: "[name].js.map",
-        //     include: "/src/*.js"
-        // }),
+        new webpack.SourceMapDevToolPlugin({
+            filename: "[name].js.map",
+            include: "/src/*.js"
+        }),
         new CopyWebpackPlugin([
             {
                 from: "./src/assets/docs",
@@ -173,7 +153,7 @@ module.exports = {
         minimize: true,
         minimizer: [
             new UglifyJsPlugin({
-                sourceMap: true
+                // sourceMap: true
             })
         ]
     }

@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "dev": "cross-env NODE_ENV=development &&  webpack  --config ./build/webpack.dev.js --profile ",
-    "serve": "cross-env NODE_ENV=development && webpack-dev-server --config ./build/webpack.dev.js",
+    "serve": "cross-env NODE_ENV=development && webpack-dev-server --config ./build/webpack.dev.js --profile",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",

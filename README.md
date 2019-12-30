@@ -91,7 +91,22 @@
 
 - 懒加载 ✔
   > 有 `import()` 和 `require.ensure()` 两种写法，待整理
-- 预加载
+  >
+  > - import()
+  >   可以使用注释的方式指定打包名
+  >
+  > ```javascript
+  > import(/* webpackChunkName: 'subPageA'*/ "./chunkA").then(function(
+  >   subPageA
+  > ) {
+  >   console.log(subPageA);
+  > });
+  > ```
+  >
+  > - Babel 插件
+  >   直接使用 `dynamic-import-webpack` 插件
+- 预加载 ✔
+  > [webpack 中的预加载](https://www.zcfy.cc/article/link-rel-prefetch-preload-in-webpack)
 - 浏览器缓存
 - 垫片
 - 单页面实现 ✔

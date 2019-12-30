@@ -1,8 +1,6 @@
 <template>
   <div>
     <p class="testAgainstFont">This Sentence is from {{ name }} file~!</p>
-    <p>让我来看看字体对不对</p>
-    <p>对了~</p>
     <router-link to="/welcome">welcome</router-link>
     <router-view></router-view>
   </div>

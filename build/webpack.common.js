@@ -1,19 +1,27 @@
 const path = require("path");
 const webpack = require("webpack");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const PreloadWebpackPlugin = require("preload-webpack-plugin");
 
 module.exports = {
-    entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
-    // devtool: "source-map",
+    // entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
+    entry: {
+        index: [path.join(__dirname, "../src/js/index.js")],
+        extra: [path.join(__dirname, "../src/js/extra-index.js")]
+    },
+    resolve: {
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".less", ".json", ".css"],
+        alias: {
+            components: path.resolve(__dirname, "../src/components")
+        }
+    },
     output: {
+        // contenthash/chunkhash表示根据内容生成hash值，但在dev-server下会报错
         filename: "[name].[hash:8].js", //输出文件名，[name]表示入口文件js名
-        path: path.join(__dirname, "../dist") ,//输出文件路径
+        path: path.join(__dirname, "../dist"), //输出文件路径
         chunkFilename: "[name].chunk.js"
     },
     module: {
@@ -139,7 +147,7 @@ module.exports = {
                     priority: -10, // 优先级，先打包到哪个组里面，值越大，优先级越高
                     // 打包模块输出的文件名，默认为 缓存组名称（vendors） + 连接字符串（automaticNameDelimiter） + 模块入口文件（main.js）
                     // 例如：vendors~main.js
-                    filename: "vendors.js"
+                    filename: "vendors.[name].js"
                 },
                 default: {
                     // 默认打包模块
@@ -150,11 +158,12 @@ module.exports = {
                 }
             }
         },
-        minimize: true,
-        minimizer: [
-            new UglifyJsPlugin({
-                // sourceMap: true
-            })
-        ]
+        // 代码分割
+        minimize: true
+        // minimizer: [
+        //     new UglifyJsPlugin({
+        //         // sourceMap: true
+        //     })
+        // ]
     }
 };

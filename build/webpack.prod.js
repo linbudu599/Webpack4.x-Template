@@ -1,6 +1,7 @@
 const path = require("path");
 const merge = require("webpack-merge");
 const commonConfig = require("./webpack.common");
+// 压缩CSS文件
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 //去除重复css，有利有弊,依赖glob
 const PurifyCSS = require("purifycss-webpack");
@@ -16,7 +17,10 @@ const StatsWriterPlugin = require("webpack-stats-plugin").StatsWriterPlugin;
 
 const prodConfig = {
     mode: "production",
+    profile: true,
+    devtool: "cheap-module-source-map",
     module: {
+        // 生产模式为了更好的压缩文件，需要对小于一定程度的图片进行base64编码
         rules: [
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -57,12 +61,13 @@ const prodConfig = {
             uglifyJS: {
                 output: {
                     //是否输出可读性较强的代码，即会保留空格和制表符，默认为输出，为了达到更好的压缩效果，可以设置为false
-                    beautify: true,
+                    // 4.45kb->
+                    beautify: false,
                     //  是否保留代码中的注释，默认为保留，为了达到更好的压缩效果，可以设置为false
                     comments: false
                 },
                 //  是否在UglifyJS删除没有用到的代码时输出警告信息，默认为输出，可以设置为false关闭这些作用不大的警告
-                warnings: false,
+                warnings: true,
                 compress: {
                     //  是否删除代码中所有的console语句，默认为不删除，开启后，会删除所有的console语句
                     drop_console: false,
@@ -73,17 +78,18 @@ const prodConfig = {
                     reduce_vars: true
                 }
             }
-        }),
-        new BundleAnalyzerPlugin({
-            analyzerPort: 9797
-        }),
-        new Visualizer({
-            filename: "./statistics.html"
-        }),
-        new StatsWriterPlugin({
-            fields: null,
-            stats: { chunkModules: true }
         })
+        // 以下三个功能类似
+        // new BundleAnalyzerPlugin({
+        //     analyzerPort: 9797
+        // }),
+        // new Visualizer({
+        //     filename: "./statistics.html"
+        // }),
+        // new StatsWriterPlugin({
+        //     fields: null,
+        //     stats: { chunkModules: true }
+        // })
     ]
 };
 module.exports = merge(commonConfig, prodConfig);

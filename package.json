@@ -9,13 +9,13 @@
     "not ie <= 8"
   ],
   "scripts": {
-    "dev": "cross-env NODE_ENV=development &&  webpack  --config ./build/webpack.dev.js --profile ",
-    "serve": "cross-env NODE_ENV=development && webpack-dev-server --config ./build/webpack.dev.js --profile",
+    "dev": "cross-env NODE_ENV=development &&  webpack  --config ./build/webpack.dev.js --progress",
+    "serve": "cross-env NODE_ENV=development && webpack-dev-server --config ./build/webpack.dev.js",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
     "lint-fix": "eslint --fix --ext .js --ext .jsx --ext  .vue src/",
-    "analyze": "cross-env ANALYZE=1 NODE_ENV=production && webpack --progress --config ./build/webpack.prod.js --profile --json > stats.json",
+    "analyze": "cross-env ANALYZE=1 NODE_ENV=production && webpack --progress --config ./build/webpack.prod.js --json > stats.json",
     "build": "cross-env NODE_ENV=production && webpack --progress --config ./build/webpack.prod.js"
   },
   "author": "",

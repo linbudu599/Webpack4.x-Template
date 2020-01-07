@@ -28,6 +28,7 @@
 - [HtmlWebpackPlugin](https://www.npmjs.com/package/html-webpack-plugin): 生成 HTML 模板
 - [CopyWebpackPlugin](https://www.npmjs.com/package/copy-webpack-plugin): 拷贝静态资源
 - [merge](https://www.npmjs.com/package/webpack-merge): 合并配置
+
 - [OptimizeCssAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin): 压缩 CSS
 - [PurifyCSS](https://www.npmjs.com/package/purifycss-webpack): 清理重复、无用 CSS
 - [ParallelUglifyPlugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin): 压缩 JS
@@ -48,27 +49,27 @@
 
 ## ⚒ 接下来实现/解决的功能 Functions remain unsolved
 
-- 各种各样的 lint
+- [x] 各种各样的 lint
   > - eslint ✔
   > - stylelint ✔
   > - tslint ✔
-- 环境变量 ✔
-- 字体文件配置 ✔
-- ts 支持 ✔
-- 多入口、多出口相关配置
-- 重新实现 webpack-dev-server ❔
+- [x] 环境变量 ✔
+- [x] 字体文件配置 ✔
+- [x] ts 支持 ✔
+- [x] 多入口、多出口相关配置
+- [x] 重新实现 webpack-dev-server ❔
 
   - webpack-dev-server 配置项参见 [webpack.dev.js](build/webpack.dev.js)
   - 使用 `webpack-dev-middleware` 报错(vue-loader 错误)，待解决
 
-- 代码分割
+- [x] 代码分割
 
   > - [为什么要进行代码分割？](./Analyze.md)
   > - 单页面下代码分割 ✔
   > - 多页面下代码分割
   > - 使用[dynamic-import-webpack](http://npm.taobao.org/package/babel-plugin-dynamic-import-webpack)进行代码分割
 
-- 真·Tree-Shaking ✔
+- [x] 真·Tree-Shaking ✔
 
   > Tree Shaking：只支持 `ES **Module`\*\* 例如 `import` 和 `export` 的静态结构特性的引入。
   > 当引入一个模块时，不引入所有的代码，只引入需要的代码.
@@ -79,7 +80,7 @@
   - ts 要使用，需要在 `tsconfig.json` 中将编译目标(target)设定为 `es6`
   - 4.0 中需要使用 `config.optimization.minimize` 来进行设置
 
-- Source-Map ✔
+- [x] Source-Map ✔
 
   > 注意，如果使用了 `UglifyJsPlugin` 则需要在其中也配置 sourceMap
 
@@ -89,7 +90,7 @@
   });
   ```
 
-- 懒加载 ✔
+- [x] 懒加载 ✔
   > 有 `import()` 和 `require.ensure()` 两种写法，待整理
   >
   > - import()
@@ -105,11 +106,11 @@
   >
   > - Babel 插件
   >   直接使用 `dynamic-import-webpack` 插件
-- 预加载 ✔
+- [ ] 预加载
   > [webpack 中的预加载](https://www.zcfy.cc/article/link-rel-prefetch-preload-in-webpack)
-- 浏览器缓存
-- 垫片
-- 单页面实现 ✔
+- [ ] 浏览器缓存
+- [ ] 垫片
+- [x] 单页面实现 ✔
   > - 使用`Vue-Router`
-- 多页面实现
-- 打包大小优化：dll
+- [ ] 多页面实现
+- [ ] 打包大小优化：dll

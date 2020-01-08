@@ -5,6 +5,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin"); // 顾名思义，把资源加到 html 里，那这个插件把 dll 加入到 index.html 里
+const AutoDllPlugin = require("autodll-webpack-plugin");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 module.exports = {
     // entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
@@ -119,7 +122,24 @@ module.exports = {
         new webpack.BannerPlugin({
             banner: "©️linbudu 2019",
             entryOnly: true
-        })
+        }),
+        // new webpack.DllReferencePlugin({
+        //     // 注意: DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
+        //     context: path.resolve(__dirname, "../"),
+        //     manifest: path.resolve(__dirname, "../dll/vue.manifest.json")
+        // }),
+        // new AddAssetHtmlPlugin({
+        //     filepath: path.resolve(__dirname, "../dll/_dll_vue.js")
+        // })
+        new AutoDllPlugin({
+            inject: true, // 设为 true 就把 DLL bundles 插到 index.html 里
+            filename: "[name].dll.js",
+            context: path.resolve(__dirname, "../"), // AutoDllPlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
+            entry: {
+                vue: ["vue", "vue-router"]
+            }
+        }),
+        new HardSourceWebpackPlugin()
     ],
     /**
      * webpack中实现代码分割的两种方式：
@@ -127,6 +147,10 @@ module.exports = {
      * 2.异步代码(import)：异步代码，无需做任何配置，会自动进行代码分割，放置到新的文件中
      */
     optimization: {
+        runtimeChunk: {
+            //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
+            name: "runtime"
+        },
         splitChunks: {
             chunks: "all", // async异步代码分割 initial同步代码分割 all同步异步分割都开启
             minSize: 30000, // 引入的文件大于30kb才进行分割

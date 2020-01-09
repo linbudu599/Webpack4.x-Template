@@ -156,7 +156,7 @@
 
 - [x] 单页面实现
   > - 使用`Vue-Router`
-- [ ] 多页面实现
+- [x] 多页面实现
 - [x] 打包大小优化：DLL（Dynamic-Link Library，动态链接库）
 
   - 手动配置 dll:
@@ -166,5 +166,5 @@
   - 摈弃 dll
     - webpack 4 有着比 dll 更好的打包性能~，dll 带来的收益并不大
 
-* [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
+- [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
   > 为模块提供中间缓存，能极大提升打包速度，已经被内置到 webpack5 中

@@ -13,7 +13,8 @@ module.exports = {
     // entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
     entry: {
         index: [path.join(__dirname, "../src/js/index.js")],
-        extra: [path.join(__dirname, "../src/js/extra-index.js")]
+        mpa_1: [path.join(__dirname, "../src/js/mpa_1.js")],
+        mpa_2: [path.join(__dirname, "../src/js/mpa_2.js")]
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".less", ".json", ".css"],
@@ -104,13 +105,25 @@ module.exports = {
             inject: true, //注入位置为html文件body底部
             favicon: path.join(__dirname, "../public/favicon.jpg"),
             cache: true, //默认是true的，表示内容变化的时候生成一个新的文件。
-            showErrors: true //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
+            showErrors: true, //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
+            chunks: ["index"]
         }),
+        new HtmlWebpackPlugin({
+            filename: "mpa-index-1.html",
+            template: path.join(__dirname, "../public/mpa-index-1.html"),
+            chunks: ["mpa-1"]
+        }),
+        new HtmlWebpackPlugin({
+            filename: "mpa-index-2.html",
+            template: path.join(__dirname, "../public/mpa-index-2.html"),
+            chunks: ["mpa-2"]
+        }),
+
         // https://cloud.tencent.com/developer/section/1477577
-        new webpack.SourceMapDevToolPlugin({
-            filename: "[name].js.map",
-            include: "/src/*.js"
-        }),
+        // new webpack.SourceMapDevToolPlugin({
+        //     filename: "[name].js.map",
+        //     include: "/src/*.js"
+        // }),
         new CopyWebpackPlugin([
             {
                 from: "./src/assets/docs",

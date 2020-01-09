@@ -9,6 +9,11 @@ import App from "../App.vue";
 
 import add from "../ts/app.ts";
 
+import _ from "lodash";
+import shimm_func from "./shimming";
+
+shimm_func();
+
 import(/* webpackChunkName: 'subPageA'*/ "./chunkA").then(function(subPageA) {
     console.log(subPageA);
     console.log(subPageA.default);
@@ -18,9 +23,9 @@ import(/* webpackChunkName: 'subPageB'*/ "./chunkB").then(function(subPageB) {
     console.log(subPageB);
 });
 
-import(/* webpackPrefetch: true */ "./pre").then((pre)=>{
+import(/* webpackPrefetch: true */ "./pre").then(pre => {
     console.log(pre);
-})
+});
 
 console.log(process.env.NODE_ENV);
 

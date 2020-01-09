@@ -127,7 +127,33 @@
       },
   ```
 
-- [ ] 垫片
+- [x] 垫片
+
+  > 什么是垫片？请看以下例子：
+  >
+  > ```javascript
+  > // index.js（入口文件）中
+  > import \_ from "lodash";
+  > import shimm_func from "./shimming";
+  > shimm_func();
+  >
+  > // shimmimg.js
+  > const shimm_func = () => {
+  >   console.log(_.join(["linbudu", "shim", "success"], "-"));
+  > };
+  > export default shimm_func;
+  > ```
+  >
+  > 原因也很简单，因为 shimming.js 中并没有引入 lodash，但是我们还想这样调用，就需要使用 `webpack.providerPlugin` ，这是一个内置插件，示例配置如下
+  >
+  > ```javascript
+  > new webpack.ProvidePlugin({
+  >   _: "lodash"
+  > });
+  > ```
+  >
+  > 这样 webpack 在打包时，如果发现某个模块中使用了 `_` ，便会自动引入 lodash 这个库，整个思想就是使用 webpack 向模块中注入全局可用的变量/函数等。
+
 - [x] 单页面实现
   > - 使用`Vue-Router`
 - [ ] 多页面实现
@@ -140,5 +166,5 @@
   - 摈弃 dll
     - webpack 4 有着比 dll 更好的打包性能~，dll 带来的收益并不大
 
-- [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
-  > 为模块提供中间缓存，能极大提升打包速度，已经被加入到 webpack5 中
+* [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
+  > 为模块提供中间缓存，能极大提升打包速度，已经被内置到 webpack5 中

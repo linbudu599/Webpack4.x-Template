@@ -139,7 +139,10 @@ module.exports = {
                 vue: ["vue", "vue-router"]
             }
         }),
-        new HardSourceWebpackPlugin()
+        new HardSourceWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            _: "lodash"
+        })
     ],
     /**
      * webpack中实现代码分割的两种方式：

@@ -8,8 +8,12 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin"); // 顾名思义，把资源加到 html 里，那这个插件把 dll 加入到 index.html 里
 const AutoDllPlugin = require("autodll-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const WebpackBar = require("webpackbar");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 
-module.exports = {
+const smp = new SpeedMeasurePlugin();
+
+module.exports = smp.wrap({
     // entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
     entry: {
         index: [path.join(__dirname, "../src/js/index.js")],
@@ -155,6 +159,12 @@ module.exports = {
         new HardSourceWebpackPlugin(),
         new webpack.ProvidePlugin({
             _: "lodash"
+        }),
+        new WebpackBar({
+            name: "Linbudu-Webpack",
+            color: "steelblue",
+            profile: true,
+            fancy: true
         })
     ],
     /**
@@ -206,4 +216,4 @@ module.exports = {
         //     })
         // ]
     }
-};
+});

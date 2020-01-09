@@ -168,3 +168,7 @@
 
 - [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
   > 为模块提供中间缓存，能极大提升打包速度，已经被内置到 webpack5 中
+
+- [webpackbar](https://github.com/nuxt/webpackbar)
+
+- [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)

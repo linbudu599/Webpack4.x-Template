@@ -7,6 +7,10 @@ import Router from "vue-router";
 import router from "../router";
 import App from "../App.vue";
 
+// import ElementUI from "element-ui";
+// import "element-ui/lib/theme-chalk/index.css";
+// Vue.use(ElementUI);
+
 import add from "../ts/app.ts";
 
 import _ from "lodash";

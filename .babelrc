@@ -12,5 +12,12 @@
       }
     ],
     ["dynamic-import-webpack"]
+    // [
+    //   "component",
+    //   {
+    //     "libraryName": "element-ui",
+    //     "styleLibraryName": "theme-chalk"
+    //   }
+    // ]
   ]
 }

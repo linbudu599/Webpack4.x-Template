@@ -21,7 +21,7 @@ const devConfig = {
     watchOptions: {
         ignored: "/node_modules/",
         // 监听到变化后会等待300ms再去更新编译内容
-        aggregateTimeout: 300,
+        // aggregateTimeout: 300,
         // 判断文件是否发生变化是通过不停询问系统实现的
         // 默认每秒1000次
         poll: 1000
@@ -76,7 +76,7 @@ const devConfig = {
         new FriendlyErrorsWebpackPlugin({
             compilationSuccessInfo: {
                 messages: [
-                    "You application is running here http://localhost:9999"
+                    "Your application is running here http://localhost:9999"
                 ],
                 notes: ["一些注意事项"]
             },

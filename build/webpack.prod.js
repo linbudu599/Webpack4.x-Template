@@ -42,6 +42,12 @@ const prodConfig = {
                             publicPath: "../imgs",
                             outputPath: "imgs/" //图片打包后的地址
                         }
+                    },
+                    {
+                        loader: "image-webpack-loader", // 压缩图片
+                        options: {
+                            bypassOnDebug: true
+                        }
                     }
                 ]
             }
@@ -120,7 +126,8 @@ const prodConfig = {
                     keep_fnames: false
                 }
             })
-        ]
+        ],
+        usedExports: true
     }
 };
 module.exports = merge(commonConfig, prodConfig);

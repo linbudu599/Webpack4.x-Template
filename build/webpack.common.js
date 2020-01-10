@@ -16,9 +16,9 @@ const smp = new SpeedMeasurePlugin();
 module.exports = smp.wrap({
     // entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
     entry: {
-        index: [path.join(__dirname, "../src/js/index.js")],
-        mpa_1: [path.join(__dirname, "../src/js/mpa_1.js")],
-        mpa_2: [path.join(__dirname, "../src/js/mpa_2.js")]
+        index: [path.join(__dirname, "../src/js/index.js")]
+        // mpa_1: [path.join(__dirname, "../src/js/mpa_1.js")],
+        // mpa_2: [path.join(__dirname, "../src/js/mpa_2.js")]
     },
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".less", ".json", ".css"],
@@ -29,8 +29,8 @@ module.exports = smp.wrap({
     output: {
         // contenthash/chunkhash表示根据内容生成hash值，但在dev-server下会报错
         filename: "[name].[hash:8].js", //输出文件名，[name]表示入口文件js名
-        path: path.join(__dirname, "../dist"), //输出文件路径
-        chunkFilename: "[name].chunk.js"
+        path: path.join(__dirname, "../dist") //输出文件路径
+        // chunkFilename: "[name].chunk.js"
     },
     module: {
         rules: [
@@ -67,7 +67,7 @@ module.exports = smp.wrap({
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: "../"
+                            publicPath: "../css"
                         }
                     },
                     "css-loader",
@@ -90,6 +90,7 @@ module.exports = smp.wrap({
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/[name].css" // 设置最终输出的文件名
+            // chunkFilename: "css/[id].[hash:8].css"
         }),
         new CleanWebpackPlugin({
             //默认对应output.path
@@ -106,22 +107,21 @@ module.exports = smp.wrap({
             filename: "index.html",
             hash: true,
             template: path.join(__dirname, "../public/index.html"), //模板文件地址，不一定是html格式的
-            inject: true, //注入位置为html文件body底部
+            inject: "body", //注入位置为html文件body底部
             favicon: path.join(__dirname, "../public/favicon.jpg"),
             cache: true, //默认是true的，表示内容变化的时候生成一个新的文件。
             showErrors: true, //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
-            chunks: ["index"]
         }),
-        new HtmlWebpackPlugin({
-            filename: "mpa-index-1.html",
-            template: path.join(__dirname, "../public/mpa-index-1.html"),
-            chunks: ["mpa-1"]
-        }),
-        new HtmlWebpackPlugin({
-            filename: "mpa-index-2.html",
-            template: path.join(__dirname, "../public/mpa-index-2.html"),
-            chunks: ["mpa-2"]
-        }),
+        // new HtmlWebpackPlugin({
+        //     filename: "mpa-index-1.html",
+        //     template: path.join(__dirname, "../public/mpa-index-1.html"),
+        //     chunks: ["mpa-1"]
+        // }),
+        // new HtmlWebpackPlugin({
+        //     filename: "mpa-index-2.html",
+        //     template: path.join(__dirname, "../public/mpa-index-2.html"),
+        //     chunks: ["mpa-2"]
+        // }),
 
         // https://cloud.tencent.com/developer/section/1477577
         // new webpack.SourceMapDevToolPlugin({
@@ -148,15 +148,16 @@ module.exports = smp.wrap({
         // new AddAssetHtmlPlugin({
         //     filepath: path.resolve(__dirname, "../dll/_dll_vue.js")
         // })
-        new AutoDllPlugin({
-            inject: true, // 设为 true 就把 DLL bundles 插到 index.html 里
-            filename: "[name].dll.js",
-            context: path.resolve(__dirname, "../"), // AutoDllPlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
-            entry: {
-                vue: ["vue", "vue-router"]
-            }
-        }),
-        new HardSourceWebpackPlugin(),
+        // 有坑，慎用
+        // new AutoDllPlugin({
+        //     inject: true, // 设为 true 就把 DLL bundles 插到 index.html 里
+        //     filename: "[name].dll.js",
+        //     context: path.resolve(__dirname, "../"), // AutoDllPlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
+        //     entry: {
+        //         vue: ["vue", "vue-router"]
+        //     }
+        // }),
+        // new HardSourceWebpackPlugin(),
         new webpack.ProvidePlugin({
             _: "lodash"
         }),
@@ -173,14 +174,14 @@ module.exports = smp.wrap({
      * 2.异步代码(import)：异步代码，无需做任何配置，会自动进行代码分割，放置到新的文件中
      */
     optimization: {
-        runtimeChunk: {
-            //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
-            name: "runtime"
-        },
+        // runtimeChunk: {
+        //     //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
+        //     name: "runtime"
+        // },
         splitChunks: {
             chunks: "all", // async异步代码分割 initial同步代码分割 all同步异步分割都开启
             minSize: 30000, // 引入的文件大于30kb才进行分割
-            //maxSize: 50000,         //50kb，尝试将大于50kb的文件拆分成n个50kb的文件
+            maxSize: 50000, //50kb，尝试将大于50kb的文件拆分成n个50kb的文件
             minChunks: 1, // 将被分割打包的模块至少使用次数
             // 当需要分割的模块同步引入个数超出限时时，webpack之后分割限制值的模块，其它的将不做处理
             maxAsyncRequests: 5, // 同时加载的模块数量最多是5个，只分割出同时引入的前5个文件

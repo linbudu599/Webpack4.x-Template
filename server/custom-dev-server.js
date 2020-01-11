@@ -4,9 +4,8 @@ const merge = require("webpack-merge");
 const chalk = require("chalk");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const devConfig = require("../build/webpack.dev");
-const commonConfig = require("../build/webpack.common");
 
-const config = merge(commonConfig, devConfig);
+const config = merge(devConfig);
 const complier = webpack(config);
 
 const app = express();

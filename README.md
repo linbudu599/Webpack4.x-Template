@@ -1,8 +1,12 @@
-# Webpack 4.x 模板配置
+# Webpack 4.x
+
+![issues](https://img.shields.io/github/issues/linbudu599/Webpack4.x-Template)
+![stars](https://img.shields.io/github/stars/linbudu599/Webpack4.x-Template)
+![forks](https://img.shields.io/github/forks/linbudu599/Webpack4.x-Template)
 
 > 🤖 这个项目目前还处于雏形之中，我奏是个弟弟
 
-## 😃 已经实现的功能 Functions already accomplished
+## 😃 已经实现的功能 **Functions** already accomplished
 
 ### 基础
 
@@ -45,8 +49,6 @@
 
 - [preload-webpack-plugin](https://github.com/GoogleChromeLabs/preload-webpack-plugin): 实现预加载
 
--
-
 ## ⚒ 接下来实现/解决的功能 Functions remain unsolved
 
 - [x] 各种各样的 lint
@@ -57,11 +59,7 @@
 - [x] 字体文件配置
 - [x] ts 支持
 - [x] 多入口、多出口相关配置
-- [x] 重新实现 webpack-dev-server ❔
-
-  - webpack-dev-server 配置项参见 [webpack.dev.js](build/webpack.dev.js)
-  - 使用 `webpack-dev-middleware` 报错(vue-loader 错误)，待解决
-
+- [x] 重新实现 webpack-dev-server
 - [x] 代码分割
 
   > - [为什么要进行代码分割？](./Analyze.md)
@@ -97,7 +95,7 @@
   });
   ```
 
-* [x] 懒加载
+- [x] 懒加载
   > 有 `import()` 和 `require.ensure()` 两种写法，待整理
   >
   > - import()
@@ -113,9 +111,9 @@
   >
   > - Babel 插件
   >   直接使用 `dynamic-import-webpack` 插件
-* [ ] 预加载
+- [ ] 预加载
   > [webpack 中的预加载](https://www.zcfy.cc/article/link-rel-prefetch-preload-in-webpack)
-* [x] 浏览器缓存:通过设置生成的文件以及 chunk 的 name：
+- [x] 浏览器缓存:通过设置生成的文件以及 chunk 的 name：
 
   > contenthash 代表从源代码内容生成 hash 值
   > 源代码不变，hash 值就不会变，解决浏览器缓存问题。打包上线时，用户只需要更新有变化的代码，没有变化的从浏览器缓存读取
@@ -167,8 +165,9 @@
     - webpack 4 有着比 dll 更好的打包性能~，dll 带来的收益并不大
 
 - [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
+
   > 为模块提供中间缓存，能极大提升打包速度，已经被内置到 webpack5 中
 
-- [webpackbar](https://github.com/nuxt/webpackbar)
+- [webpackbar](https://github.com/nuxt/webpackbar)，在打包编译过程中生成进度条
 
-- [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
+- [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)，显示在打包过程中各阶段/各 loader/各 plugin 耗时

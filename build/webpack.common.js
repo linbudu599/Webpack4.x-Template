@@ -110,7 +110,7 @@ module.exports = smp.wrap({
             inject: "body", //注入位置为html文件body底部
             favicon: path.join(__dirname, "../public/favicon.jpg"),
             cache: true, //默认是true的，表示内容变化的时候生成一个新的文件。
-            showErrors: true, //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
+            showErrors: true //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
         }),
         // new HtmlWebpackPlugin({
         //     filename: "mpa-index-1.html",
@@ -174,10 +174,11 @@ module.exports = smp.wrap({
      * 2.异步代码(import)：异步代码，无需做任何配置，会自动进行代码分割，放置到新的文件中
      */
     optimization: {
-        // runtimeChunk: {
-        //     //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
-        //     name: "runtime"
-        // },
+        // 默认为false，即对于每个入口会生成runtime~${entrtpoint.name}文件
+        runtimeChunk: {
+            //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
+            name: "runtime"
+        },
         splitChunks: {
             chunks: "all", // async异步代码分割 initial同步代码分割 all同步异步分割都开启
             minSize: 30000, // 引入的文件大于30kb才进行分割
@@ -209,12 +210,15 @@ module.exports = smp.wrap({
                 }
             }
         },
-        // 代码分割
-        minimize: true
-        // minimizer: [
-        //     new UglifyJsPlugin({
-        //         // sourceMap: true
-        //     })
-        // ]
+        // 压缩js代码及调用的插件
+        minimize: true,
+        minimizer: [
+            // new UglifyJsPlugin({
+            //     sourceMap: true,
+            //     cache: true,
+            //     // 自带并行？
+            //     parallel: true
+            // })
+        ]
     }
 });

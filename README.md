@@ -27,27 +27,21 @@
 
 ### Loader/Plugin/Feature
 
-- [MiniCssExtractPlugin](https://www.npmjs.com/package/mini-css-extract-plugin): 分离 CSS 文件
-- [CleanWebpackPlugin](https://www.npmjs.com/package/clean-webpack-plugin): 清除旧的 dist 目录
-- [HtmlWebpackPlugin](https://www.npmjs.com/package/html-webpack-plugin): 生成 HTML 模板
-- [CopyWebpackPlugin](https://www.npmjs.com/package/copy-webpack-plugin): 拷贝静态资源
-- [merge](https://www.npmjs.com/package/webpack-merge): 合并配置
-
-- [OptimizeCssAssetsPlugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin): 压缩 CSS
-- [PurifyCSS](https://www.npmjs.com/package/purifycss-webpack): 清理重复、无用 CSS
-- [ParallelUglifyPlugin](https://www.npmjs.com/package/uglifyjs-webpack-plugin): 压缩 JS
-- [BundleAnalyzerPlugin](https://www.npmjs.com/package/webpack-bundle-analyzer): 分析打包大小
-- [Visualizer](https://www.npmjs.com/package/webpack-visualizer-plugin): 也是分析打包大小，但我感觉这个更直观
-- 字体文件配置
-
-  > ~~puzzle 但有个诡异的地方，明明字体文件加载到了，但就是不会显示...~~
-
-  > 是字体文件的问题，因为图省事只配了每个字体的 ttf 格式，这个字体（汉咪简体）估计是刚好不行，换了个字体立马成功了，这么个小问题浪费了我一个多小时...
-
+- [mini-css-extract-plugin](https://www.npmjs.com/package/mini-css-extract-plugin): 分离 CSS 文件
+- [clean-webpack-plugin](https://www.npmjs.com/package/clean-webpack-plugin): 在编译前清除旧的 dist 目录
+- [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin): 生成 HTML 模板
+- [copy-webpack-plugin](https://www.npmjs.com/package/copy-webpack-plugin): 拷贝静态资源
+- [optimize-css-assets-webpack-plugin](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin): 压缩 CSS
+- [purifycss-webpack](https://www.npmjs.com/package/purifycss-webpack): 清理重复、无用 CSS
+- [webpack-parallel-uglify-plugin](https://www.npmjs.com/package/parallel-webpack): 并行压缩 JS 来提速
+- [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer): 分析打包大小
+- [webpack-visualizer-plugin](https://www.npmjs.com/package/webpack-visualizer-plugin): 也是分析打包大小，但我感觉这个更直观
 - [friendly-errors-webpack-plugin](https://www.npmjs.com/package/friendly-errors-webpack-plugin)
 - 环境变量 & DefinePlugin & [dotenv](https://www.npmjs.com/package/dotenv)
-
 - [preload-webpack-plugin](https://github.com/GoogleChromeLabs/preload-webpack-plugin): 实现预加载
+- [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin): 为模块提供中间缓存，能极大提升打包速度，已经被内置到 webpack5 中，但是有坑
+- [webpackbar](https://github.com/nuxt/webpackbar): 在打包编译过程中生成进度条( `vuepress` 的那种)
+- [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin): 显示在打包过程中各阶段/各 loader/各 plugin 耗时
 
 ## ⚒ 接下来实现/解决的功能 Functions remain unsolved
 
@@ -55,8 +49,8 @@
   > - eslint
   > - stylelint
   > - tslint
-- [x] 环境变量
 - [x] 字体文件配置
+- [ ] 压缩字体文件（字蛛？）
 - [x] ts 支持
 - [x] 多入口、多出口相关配置
 - [x] 重新实现 webpack-dev-server
@@ -163,11 +157,3 @@
     - 使用 [autodll-webpack-plugin](https://www.npmjs.com/package/autodll-webpack-plugin)，这个插件曾经也被 `vue-cli` 使用
   - 摈弃 dll
     - webpack 4 有着比 dll 更好的打包性能~，dll 带来的收益并不大
-
-- [hard-source-webpack-plugin](https://github.com/mzgoddard/hard-source-webpack-plugin)
-
-  > 为模块提供中间缓存，能极大提升打包速度，已经被内置到 webpack5 中
-
-- [webpackbar](https://github.com/nuxt/webpackbar)，在打包编译过程中生成进度条
-
-- [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)，显示在打包过程中各阶段/各 loader/各 plugin 耗时

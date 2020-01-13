@@ -67,7 +67,7 @@ module.exports = smp.wrap({
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: "../css"
+                            publicPath: "../"
                         }
                     },
                     "css-loader",
@@ -90,7 +90,6 @@ module.exports = smp.wrap({
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/[name].css" // 设置最终输出的文件名
-            // chunkFilename: "css/[id].[hash:8].css"
         }),
         new CleanWebpackPlugin({
             //默认对应output.path
@@ -175,14 +174,18 @@ module.exports = smp.wrap({
      */
     optimization: {
         // 默认为false，即对于每个入口会生成runtime~${entrtpoint.name}文件
-        runtimeChunk: {
-            //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
-            name: "runtime"
-        },
+        // runtimeChunk: {
+        //     //兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
+        //     name: "runtime"
+        // },
+        // 编译错误时不生成资源
+        noEmitOnErrors: true,
+        // 给module和chunk更有意义的名称
+        namedModules: true,
+        namedChunks: true,
         splitChunks: {
             chunks: "all", // async异步代码分割 initial同步代码分割 all同步异步分割都开启
             minSize: 30000, // 引入的文件大于30kb才进行分割
-            maxSize: 50000, //50kb，尝试将大于50kb的文件拆分成n个50kb的文件
             minChunks: 1, // 将被分割打包的模块至少使用次数
             // 当需要分割的模块同步引入个数超出限时时，webpack之后分割限制值的模块，其它的将不做处理
             maxAsyncRequests: 5, // 同时加载的模块数量最多是5个，只分割出同时引入的前5个文件
@@ -199,7 +202,7 @@ module.exports = smp.wrap({
                     priority: -10, // 优先级，先打包到哪个组里面，值越大，优先级越高
                     // 打包模块输出的文件名，默认为 缓存组名称（vendors） + 连接字符串（automaticNameDelimiter） + 模块入口文件（main.js）
                     // 例如：vendors~main.js
-                    filename: "vendors.[name].js"
+                    filename: "vendors.js"
                 },
                 default: {
                     // 默认打包模块

@@ -126,8 +126,7 @@ const prodConfig = {
                     keep_fnames: false
                 }
             })
-        ],
-        usedExports: true
+        ]
     }
 };
 module.exports = merge(commonConfig, prodConfig);

@@ -20,7 +20,8 @@
     "build:dll": "webpack --config ./build/webpack.dll.js"
   },
   "sideEffects": [
-    "*.css"
+    "*.css",
+    "*.less"
   ],
   "author": "linbudu",
   "license": "MIT",

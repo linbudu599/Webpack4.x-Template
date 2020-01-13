@@ -7,9 +7,9 @@ import Router from "vue-router";
 import router from "../router";
 import App from "../App.vue";
 
-// import ElementUI from "element-ui";
-// import "element-ui/lib/theme-chalk/index.css";
-// Vue.use(ElementUI);
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+Vue.use(ElementUI);
 
 import add from "../ts/app.ts";
 
@@ -18,18 +18,17 @@ import shimm_func from "./shimming";
 
 shimm_func();
 
-import(/* webpackChunkName: 'subPageA'*/ "./chunkA").then(function(subPageA) {
-    console.log(subPageA);
-    console.log(subPageA.default);
-});
+const subPageA = import(/* webpackChunkName: 'subPageA'*/ "./chunkA").then(
+    function(subPageA) {
+        console.log(subPageA);
+    }
+);
 
-import(/* webpackChunkName: 'subPageB'*/ "./chunkB").then(function(subPageB) {
-    console.log(subPageB);
-});
-
-import(/* webpackPrefetch: true */ "./pre").then(pre => {
-    console.log(pre);
-});
+const subPageB = import(/* webpackChunkName: 'subPageB'*/ "./chunkB").then(
+    function(subPageB) {
+        console.log(subPageB);
+    }
+);
 
 console.log(process.env.NODE_ENV);
 

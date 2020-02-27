@@ -1,7 +1,7 @@
 const merge = require("webpack-merge");
 const webpack = require("webpack");
 const path = require("path");
-const dotenv = require("dotenv").config({
+require("dotenv").config({
     path: path.join(__dirname, "../.env")
 });
 const commonConfig = require("./webpack.common");
@@ -14,9 +14,7 @@ const devConfig = {
     // inline: 内联到对应js文件
     // cheap: 只提示错误在源文件的哪一行就行了，不用精确到哪一行哪一列
     // module: 指不光是我们写的代码，包括第三方模块的代码，它都会进行错误提示
-
     // devtool: "cheap-module-source-map",
-
     // 以下选项只有在watch:true时才有意义
     watchOptions: {
         ignored: "/node_modules/",
@@ -63,15 +61,9 @@ const devConfig = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            // "process.env": {
-            //   NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            // },
             PRODUCTION: JSON.stringify(false),
-            "process.env.USERNAMEBUDU": JSON.stringify(
-                process.env.USERNAMEBUDU
-            ),
-            "process.env.FILENAME": JSON.stringify(process.env.FILENAME),
-            "process.env.NODE_ENV": JSON.stringify("development")
+            USERNAMEBUDU: JSON.stringify(process.env.USERNAMEBUDU),
+            FILENAME: JSON.stringify(process.env.FILENAME)
         }),
         new FriendlyErrorsWebpackPlugin({
             compilationSuccessInfo: {
@@ -94,8 +86,6 @@ const devConfig = {
         })
     ],
     optimization: {
-        // 在开发环境中加，生产环境不加
-        // 摇树优化
         usedExports: true
     }
 };

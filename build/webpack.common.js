@@ -4,42 +4,30 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const AddAssetHtmlPlugin = require("add-asset-html-webpack-plugin"); // 顾名思义，把资源加到 html 里，那这个插件把 dll 加入到 index.html 里
-const AutoDllPlugin = require("autodll-webpack-plugin");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const WebpackBar = require("webpackbar");
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+
+const dev = process.env.NODE_ENV === "development";
 
 const smp = new SpeedMeasurePlugin();
 
 module.exports = smp.wrap({
-    // entry: path.join(__dirname, "../src/js/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
-    entry: {
-        index: [path.join(__dirname, "../src/js/index.js")]
-        // mpa_1: [path.join(__dirname, "../src/js/mpa_1.js")],
-        // mpa_2: [path.join(__dirname, "../src/js/mpa_2.js")]
-    },
+    entry: path.join(__dirname, "../src/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
     resolve: {
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".less", ".json", ".css"],
+        extensions: [".js", ".jsx", ".less", ".json", ".css"],
         alias: {
             components: path.resolve(__dirname, "../src/components")
         }
     },
     output: {
-        // contenthash/chunkhash表示根据内容生成hash值，但在dev-server下会报错
+        // contenthash表示根据内容生成hash值
         filename: "[name].[hash:8].js", //输出文件名，[name]表示入口文件js名
-        path: path.join(__dirname, "../dist") //输出文件路径
-        // chunkFilename: "[name].chunk.js"
+        path: path.join(__dirname, "../dist"), //输出文件路径
+        chunkFilename: "[name].chunk.js"
     },
     module: {
         rules: [
-            {
-                test: /\.ts?$/,
-                loader: "ts-loader",
-                exclude: /(node_modules)/,
-                include: [path.resolve(__dirname, "../src")]
-            },
             {
                 test: /\.js$/,
                 loader: "eslint-loader",
@@ -52,14 +40,12 @@ module.exports = smp.wrap({
                 }
             },
             {
-                test: /\.vue$/,
-                loader: "vue-loader"
-            },
-            {
-                test: /\.js$/,
-                //babel-preset-env/es2015区别
-                exclude: /(node_modules)/,
-                loader: "babel-loader"
+                test: /\.(js|jsx)$/,
+                loader: "babel-loader",
+                exclude: /node_modules/,
+                options: {
+                    plugins: ["lodash"]
+                }
             },
             {
                 test: /\.(css|less)$/,
@@ -67,7 +53,9 @@ module.exports = smp.wrap({
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: "../"
+                            publicPath: "../",
+                            esModules: true,
+                            hmr: dev
                         }
                     },
                     "css-loader",
@@ -82,7 +70,7 @@ module.exports = smp.wrap({
                     options: {
                         limit: 1024 * 10
                     }
-                    // .woff，woff2一定要url-loader处理成DataURL，否则会报错跨域问题
+                    // .woff，woff2一定要url-loader处理成DataURL，否则会报错跨域问题?
                 }
             }
         ]
@@ -96,7 +84,7 @@ module.exports = smp.wrap({
         }),
         new HtmlWebpackPlugin({
             // 打包输出HTML
-            title: "Hello Webpack",
+            title: "@budu/jsx-template",
             minify: {
                 // 压缩HTML文件
                 removeComments: true, // 移除HTML中的注释
@@ -111,60 +99,30 @@ module.exports = smp.wrap({
             cache: true, //默认是true的，表示内容变化的时候生成一个新的文件。
             showErrors: true //如果 webpack 编译出现错误，webpack会将错误信息包裹在一个 pre 标签内
         }),
-        // new HtmlWebpackPlugin({
-        //     filename: "mpa-index-1.html",
-        //     template: path.join(__dirname, "../public/mpa-index-1.html"),
-        //     chunks: ["mpa-1"]
-        // }),
-        // new HtmlWebpackPlugin({
-        //     filename: "mpa-index-2.html",
-        //     template: path.join(__dirname, "../public/mpa-index-2.html"),
-        //     chunks: ["mpa-2"]
-        // }),
-
-        // https://cloud.tencent.com/developer/section/1477577
-        // new webpack.SourceMapDevToolPlugin({
-        //     filename: "[name].js.map",
-        //     include: "/src/*.js"
-        // }),
         new CopyWebpackPlugin([
             {
                 from: "./src/assets/docs",
                 to: "publicDocs"
             }
         ]),
-        new VueLoaderPlugin(),
-        // https://www.webpackjs.com/plugins/banner-plugin/
         new webpack.BannerPlugin({
             banner: "©️linbudu 2019",
-            entryOnly: true
+            entryOnly: true,
+            exclude: /(node_modules)/
         }),
-        // new webpack.DllReferencePlugin({
-        //     // 注意: DllReferencePlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
-        //     context: path.resolve(__dirname, "../"),
-        //     manifest: path.resolve(__dirname, "../dll/vue.manifest.json")
+        // 会使按需加载无法生效！
+        // new webpack.ProvidePlugin({
+        //     _: "lodash"
         // }),
-        // new AddAssetHtmlPlugin({
-        //     filepath: path.resolve(__dirname, "../dll/_dll_vue.js")
-        // })
-        // 有坑，慎用
-        // new AutoDllPlugin({
-        //     inject: true, // 设为 true 就把 DLL bundles 插到 index.html 里
-        //     filename: "[name].dll.js",
-        //     context: path.resolve(__dirname, "../"), // AutoDllPlugin 的 context 必须和 package.json 的同级目录，要不然会链接失败
-        //     entry: {
-        //         vue: ["vue", "vue-router"]
-        //     }
-        // }),
-        // new HardSourceWebpackPlugin(),
-        new webpack.ProvidePlugin({
-            _: "lodash"
-        }),
         new WebpackBar({
             name: "Linbudu-Webpack",
             color: "steelblue",
             profile: true,
             fancy: true
+        }),
+        new LodashModuleReplacementPlugin({
+            collections: true,
+            paths: true
         })
     ],
     /**

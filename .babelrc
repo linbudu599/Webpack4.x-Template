@@ -9,7 +9,8 @@
             "imports": ["react"],
             "locals": ["module"]
           }]
-        }]
+        }],
+        ["lodash"]
       ]
     }
   }

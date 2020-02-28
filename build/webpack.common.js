@@ -48,7 +48,18 @@ module.exports = smp.wrap({
                 }
             },
             {
+                test: /\.(js|jsx)$/,
+                loader: "thread-loader",
+                exclude: /node_modules/,
+                options: {
+                    workers: 2,
+                    workerParallelJobs: 20,
+                    name: "webpack4-pool"
+                }
+            },
+            {
                 test: /\.(css|less)$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -65,6 +76,7 @@ module.exports = smp.wrap({
             },
             {
                 test: /\.(eot|ttf|svg|woff)$/,
+                exclude: /node_modules/,
                 use: {
                     loader: "url-loader",
                     options: {

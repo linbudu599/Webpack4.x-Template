@@ -12,9 +12,7 @@ module.exports = {
         browser: true
     },
     plugins: ["html", "react"],
-    // extends: ['alloy', 'alloy/typescript'],
-    // extends: "standard",
-    // extends: ["plugin:vue/essential"],
+    extends: ["prettier", "react-app"],
     rules: {
         //启用额外的规则或覆盖默认的规则
         // indent: ["error", 2], //软缩进

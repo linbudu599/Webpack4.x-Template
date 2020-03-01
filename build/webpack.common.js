@@ -13,7 +13,7 @@ const dev = process.env.NODE_ENV === "development";
 const smp = new SpeedMeasurePlugin();
 
 module.exports = smp.wrap({
-    entry: path.join(__dirname, "../src/index.js"), //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
+    entry: ["react-hot-loader/patch", path.join(__dirname, "../src/index.js")], //入口文件，若不配置webpack4将自动查找src目录下的index.js文件
     resolve: {
         extensions: [".js", ".jsx", ".less", ".json", ".css"],
         alias: {

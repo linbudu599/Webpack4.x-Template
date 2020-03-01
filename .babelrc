@@ -10,7 +10,8 @@
             "locals": ["module"]
           }]
         }],
-        ["lodash"]
+        ["lodash"],
+        ["react-hot-loader/babel"]
       ]
     }
   }

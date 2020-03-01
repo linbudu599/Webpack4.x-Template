@@ -1,8 +1,15 @@
 import React from "react";
 import Header from "components/Header";
 import Img from "../assets/imgs/thomas-tixtaaz-rdwkamJlpiU-unsplash.jpg";
+import Loadable from "react-loadable";
+import Loading from "components/Loading";
 import _ from "lodash";
 import "./app.less";
+
+const LoadableComponent = Loadable({
+  loader: () => import("components/Header"),
+  loading: Loading
+});
 
 function App() {
   console.log(PRODUCTION);
@@ -13,8 +20,9 @@ function App() {
   return (
     <>
       <Header />
+      <LoadableComponent />
       <img src={Img} className="img" alt="img" />
-      <p>1111</p>
+      <p>Hi！</p>
     </>
   );
 }

@@ -81,6 +81,34 @@ const prodConfig = {
         })
     ],
     optimization: {
+        chunkIds: "named",
+        splitChunks: {
+          // 默认使用缓存组外层定义的配置
+          minSize: 10 * 1024, // 使大于10k的文件进行分包 
+          maxSize: 0,
+          minChunks: 1,
+          name: false,
+          maxAsyncRequests: 5, // 按需加载代码块最多允许的并行请求数
+          maxInitialRequests: 3, // 入口代码块最多允许的并行请求数
+          automaticNameDelimiter: "~",
+          name: true, // 每个缓存组打包得到的代码块的名称， 为false时打包结果会是数字命名的js这种
+          chunks: "all", // initial -> 入口 async -> 按需加载的
+          cacheGroups: {
+            commons: {
+              chunks: 'all',
+              name: "commons", // 会覆盖外层缓存组的name属性
+              minChunks: 2,
+              maxInitialRequests: 5,
+            },
+            vendor: {
+              test: /node_modules/, // 将node_modules的文件进行拆分
+              chunks: 'initial',
+              name: 'vendor',
+              // priority: 10,
+              // enforce: true
+            },
+          },
+        },
         usedExports: true,
         minimize: true,
         minimizer: [

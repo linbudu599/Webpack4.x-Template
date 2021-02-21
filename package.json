@@ -111,7 +111,7 @@
     "eslint-plugin-react": "^7.18.3",
     "express": "^4.17.1",
     "jest": "^25.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "parallel-webpack": "^2.4.0",
     "preload-webpack-plugin": "^2.3.0",
     "react": "^16.13.0",
